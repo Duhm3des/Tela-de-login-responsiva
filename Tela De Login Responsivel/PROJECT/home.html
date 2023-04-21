@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJECT|2023</title>
+  <link rel="shortcut icon" href="iconetitle.png" type="image/x-icon">
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url(./Gamer\ Room_\ Cyberpunk\,\ ExceptRea.gif);
+    }
+
+    .card::-webkit-scrollbar {
+      width: 10px;
+      border: 1px solid rgb(200, 200, 200);
+    }
+
+    .car::-webkit-scrollbar-thumb {
+      background-color: gold;
+      border-radius: 50px;
+    }
+
+    .card {
+      width: 400px;
+      height: 400px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      overflow-y: scroll;
+    }
+
+    .card #IMG {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid black;
+      background: white;
+      margin-left: 160px;
+    }
+
+    .card .container .caixa {
+      width: 350px;
+      height: 40px;
+      border: 2px solid black;
+      text-align: center;
+      margin: 20px 0;
+      border-radius: 50px;
+      background: gray;
+    }
+
+    .card button {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-left: 150px;
+      top: 30px;
+      width: 120px;
+      height: 50px;
+      border-radius: 25px;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: white;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    button a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+    }
+
+    .card2 {
+      width: 400px;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: all 0.2s;
+    }
+
+    .card2:hover {
+      transform: scale(0.98);
+      border-radius: 20px;
+    }
+
+    .card:hover {
+      box-shadow: 0px 0px 40px 2px rgba(0, 180, 240, 0.3);
+    }
+
+    button:hover {
+      box-shadow: 0px 0px 40px 2px rgba(255, 0, 208, 0.3);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      position: flex;
+      align-items: center;
+
+    }
+
+    .container a {
+      position: relative;
+      padding: 16px 30px;
+      font-size: 1.5em;
+      color: var(--clr);
+      text-shadow: 0 0 15px var(--clr);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: 0.5s solid rgba(0, 0, 0, 0.5);
+    }
+
+    .container a:hover {
+      color: #fff;
+      border: 2px solid rgba(0, 0, 0, 0);
+    }
+    @media only screen and (max-width: 950px){
+      .card{
+          width: 85%;
+      }
+      .card .card2{
+        width: 85%;
+      }
+      .card .card2 .caixa {
+        width: 85%;
+        height: 70px;
+        text-align: center;
+      }
+  }
+  @media only screen and (max-width: 600px) {
+    .card .card2 {
+        display: flex;
+        flex-direction: column;
+    }
+    .card .card2 .caixa{
+      display: flex;
+      flex-direction: column;
+    }
+    .card {
+        width: 90%;
+    }
+    .card .card2{
+      width: 90%;
+    }
+    .card .card2 #IMG{
+      margin-left: 35%;
+    }
+    .card .card2 .caixa{
+      width: 90%;
+      height: 100px;
+    }
+}
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div class="card2">
+      <img id="IMG" src="./6f658cf2db64bcf4c463c4db76b3a6b9.jpg">
+      <div class="container">
+        <div class="caixa">
+          <a href="./box.html" style="--clr:#1e9bff;">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Box Animation
+          </a>
+        </div>
+        <div class="caixa">
+          <a href="./netflix.html" style="--clr:#ff1867;">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Netflix
+          </a>
+        </div>
+        <div class="caixa">
+          <a href="./jogodavelha.html" style="--clr:#6eff3e;">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Jogo Da Velha#
+          </a>
+        </div>
+        <div class="caixa">
+          <a href="./login.html" style="--clr:#ff140c;">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Login
+          </a>
+        </div>
+        <div class="caixa">
+          <a href="./circle.html" style="--clr:#ffef0c;">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Circle Animation
+          </a>
+        </div>
+        <div class="caixa">
+          <a href="./cordabamba.html" style="--clr:#ff0cce;">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Corda Bamba
+          </a>
+          </div>
+          <div class="caixa">
+            <a href="./jogodacobra.html" style="--clr:#0cff2c;">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Jogo da Cobrinha
+            </a>
+          </div>
+          <div class="caixa">
+            <a href="./calculadora.html" style="--clr:#a20cff;">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Calculadora
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>

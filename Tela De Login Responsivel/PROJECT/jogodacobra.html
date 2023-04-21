@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jogo da Cobrinha</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .body{
+                width: 100vw;
+                height: 100vh;
+                background: url("./Gamer\ Room_\ Cyberpunk\,\ ExceptRea.gif");
+            }
+                .fundo{
+                    width: 100vw;
+                    height: 100vh;
+                    background: url("./Gamer\ Room_\ Cyberpunk\,\ ExceptRea.gif");
+                    overflow: none;
+                }
+            .borda{
+                position: absolute;
+                background-color: rgba(9, 221, 83, 0.8);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 5px;
+                padding: 5px;
+            }
+            .fundo a {
+                position: absolute;
+                display: flex;
+                top: 5px;
+                left: 870px;
+                padding: 15px 30px;
+                color: #2196f3;
+                text-transform: uppercase;
+                letter-spacing: 4px;
+                text-decoration: none;
+                font-size: 24px;
+                overflow: hidden;
+                transition: 0.2s;
+            }
+          
+            .fundo a:hover {
+                color: #255784;
+                background-color: #2196f3;
+                box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+                transition-delay: 1s;
+            }
+          
+            .fundo a span {
+                position: absolute;
+                display: block;
+            }
+          
+            .fundo a span:nth-child(1) {
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #2196f3);
+            }
+          
+            .fundo a:hover span:nth-child(1) {
+                left: 100%;
+                transition: 1s;
+            }
+          
+            .fundo a span:nth-child(3) {
+                bottom: 0;
+                right: -100%;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(240deg, transparent, #2196f3);
+            }
+          
+            .fundo a:hover span:nth-child(3) {
+                right: 100%;
+                transition: 1s;
+                transition-delay: 0.5s;
+            }
+          
+            .fundo a span:nth-child(2) {
+                top: -100%;
+                right: 0;
+                width: 2px;
+                height: 100%;
+                background: linear-gradient(180deg, transparent, #2196f3);
+            }
+          
+            .fundo a:hover span:nth-child(2) {
+                top: 100%;
+                transition: 1s;
+                transition-delay: 0.25s;
+            }
+          
+            .fundo a span:nth-child(4) {
+                bottom: -100%;
+                left: 0;
+                width: 2px;
+                height: 100%;
+                background: linear-gradient(360deg, transparent, #2196f3);
+            }
+          
+            .fundo a:hover span:nth-child(4) {
+                bottom: 100%;
+                transition: 1s;
+                transition-delay: 0.75s;
+            }
+            @media (width: 100px){
+                .body{
+                   
+                    width: 100vw;
+                    height: 100vh;
+                }
+                .fundo
+                {
+                position: relative;
+                  max-width: 100vw;
+                  max-height: 100vh;
+                  overflow: none;
+                }
+                .fundo .btn{
+                    position: absolute;
+                background-color: rgba(9, 221, 83, 0.8);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 5px;
+                padding: 5px;
+                    
+                }
+                .fundo span{
+                    position: absolute;
+                background-color: rgba(9, 221, 83, 0.8);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 5px;
+                padding: 5px;
+                }
+                .fundo .borda {
+                  width: 62%;
+                  
+                }
+                .fundo .borda a {
+                    width: 85%;
+                    left: 40px;
+                }
+            }
+        </style>
+
+    </head>
+    <body> 
+        <div class="fundo">
+
+            <div class="btn">
+            <a href="./home.html">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                VOLTAR
+            </a>
+            </div>
+        <div class="borda">
+         
+
+
+        <canvas id="stage" width="600" height="600"></canvas>
+
+        
+        </div>
+        <script type="text/javascript">
+
+            window.onload = function(){
+
+                var stage = document.getElementById('stage');
+                var ctx = stage.getContext("2d");
+                document.addEventListener("keydown", keyPush);
+                setInterval(game, 80);
+
+                const vel = 1;
+
+                var vx = vy = 0;
+                var px = 10;
+                var py = 15;
+                var tp = 30;
+                var qp = 20;
+                var ax=ay=15;
+
+                var trail = [];
+                tail = 5;
+
+                function game(){
+                    px += vx;
+                    py += vy;
+                    if (px <0) {
+                        px = qp-1;
+                    }
+                    if (px > qp-1){
+                        px = 0;
+                    }
+                    if (py < 0){
+                        py = qp-q;
+                    }
+                    if (py > qp-1) {
+                        py = 0;
+                    }
+
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(0,0, stage.width, stage.height);
+
+                    ctx.fillStyle = "red";
+                    ctx.fillRect(ax*tp, ay*tp, tp,tp);
+
+                    ctx.fillStyle = "green";
+                    for (var i = 0; i < trail.length; i++) {
+                        ctx.fillRect(trail[i].x*tp, trail[i].y*tp, tp-1,tp-1);
+                        if (trail[i].x == px && trail[i].y == py)
+                        {
+                            vx = vy=0;
+                            tail = 5;
+                        }
+                    }
+
+                    trail.push({x:px,y:py })
+                    while (trail.length > tail) {
+                        trail.shift();
+                    }
+
+                    if (ax==px && ay==py){
+                        tail++
+                        ax = Math.floor(Math.random()*qp);
+                        ay = Math.floor(Math.random()*qp);
+                    }
+                }
+
+                function keyPush(event) {
+
+                    switch (event.keyCode) {
+                        case 37: //left
+                        vx = -vel;
+                        vy = 0;
+                        break
+                        case 38: //up
+                        vx = 0;
+                        vy = -vel;
+                        break
+                        case 39: //rigth
+                        vx = vel;
+                        vy = 0;
+                        break
+                        case 40: //down
+                        vx = 0;
+                        vy = vel;
+                        break
+                        default:
+                            
+                            break;
+                    }
+                }
+            }
+        </script>
+        </div>
+    </body>
+</html> 

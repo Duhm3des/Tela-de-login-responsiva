@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: consolas;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #edf1f4;
+}
+.dark{
+    background: #282c2f;
+}
+.calculadora {
+    position: relative;
+    width: 340px;
+    padding: 20px;
+    border-radius: 20px;
+    box-sizing: 15px 15px 20px rgba(0, 0, 0, 0.1),
+        -15px -15px 20px #fffb;
+}
+.dark .calculadora{
+    background: #33393e;
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.25),
+    -15px -15px 20px rgba(255,255,255,0.1);
+}
+.calculadora .buttons {
+    position: relative;
+    display: grid;
+}
+
+.calculadora .buttons #value {
+    position: relative;
+    grid-column: span 4;
+    user-select: none;
+    overflow: none;
+    width: 100%;
+    text-align: end;
+    color: #5166d6;
+    height: 100px;
+    line-height: 100px;
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1),
+        inset -5px -5px 20px #fff;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    padding: 0 20px;
+    font-size: 2em;
+    font-weight: 500;
+}
+.dark .calculadora .buttons #value{
+    color: #eee;
+    box-shadow: inset 15px 15px 20px rgba(0, 0, 0, 0.25),
+    inset -15px -15px 20px rgba(255,255,255,0.1);
+}
+.calculadora .buttons span {
+    position: relative;
+    padding: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
+        -5px -5px 20px #fff;
+    margin: 10px;
+    cursor: pointer;
+    user-select: none;
+    min-width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: #666;
+    border: 2px solid #edf1f4;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
+        -5px -5px 10px #fff;
+    border-radius: 10px;
+}
+.dark .calculadora .buttons span{
+    color: #eee;
+    border: 2px solid #333;
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.25),
+    -15px -15px 20px rgba(255,255,255,0.1);
+}
+.calculadora .buttons span:active {
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1),
+    inset -5px -5px 10px #fff;
+    color: red;
+}
+.dark .calculadora .buttons span:active{
+    box-shadow: inset 15px 15px 20px rgba(0, 0, 0, 0.25),
+   inset -15px -15px 20px rgba(255,255,255,0.1);
+}
+.calculadora .buttons span#clear{
+    grid-column: span 2;
+    background: #f44336;
+    color: #fff;
+    border: 2px solid #edf1f4;
+}
+.calculadora .buttons span#plus{
+    grid-row: span 2;
+    background: #31a935;
+    color: #fff;
+    border: 2px solid #edf1f4;
+}
+.calculadora .buttons span#equal{
+    grid-row: span 2;
+    background: #2196f3;
+    color: #fff;
+    border: 2px solid #edf1f4;
+}
+.calculadora .buttons span#clear:active,
+.calculadora .buttons span#plus:active,
+.calculadora .buttons span#equal:active{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
+    -5px -5px 10px #fff,
+    inset 5px 5px 10px rgba(0, 0, 0, 0.1); 
+}
+.toggleBtn{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #555;
+    cursor: pointer;
+    border: 2px solid #edf1f4;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
+    -5px -5px 10px #fff;
+}
+a {
+    position: absolute;
+    display: flex;
+    top: 10px;
+    left: 10px;
+    padding: 15px 30px;
+    color: #2196f3;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+a:hover {
+    color: #255784;
+    background-color: #2196f3;
+    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    transition-delay: 1s;
+}
+
+a span {
+    position: absolute;
+    display: block;
+}
+
+a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #2196f3);
+}
+
+a:hover span:nth-child(1) {
+    left: 100%;
+    transition: 1s;
+}
+
+a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(240deg, transparent, #2196f3);
+}
+
+a:hover span:nth-child(3) {
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+
+a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #2196f3);
+}
+
+a:hover span:nth-child(2) {
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0.25s;
+}
+
+a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #2196f3);
+}
+
+a:hover span:nth-child(4) {
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0.75s;
+}
+@media only screen and (max-width: 600px) {
+   .elastic {
+    width: 90%;
+   }
+   .elastic .ball{
+    width: 90%;
+   }
+   .calculadora .buttons span{
+    height: 817px;
+    width: 569px;
+    left: -92px;
+    font-size: 60px;
+}
+}
+@media only screen and (max-width: 400px) {
+   .calculadora .buttons span{
+    height: 817px;
+    width: 569px;
+    left: -92px;
+    font-size: 60px;
+}
+.toggleBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #555;
+    cursor: pointer;
+    border: 2px solid #edf1f4;
+    box-shadow: 5px 5px 10px rgb(0 0 0 / 10%), -5px -5px 10px #fff;
+}
+}
+    </style>
+</head>
+<body>
+    <div class="toggleBtn"></div>
+    <div class="calculadora">
+        <div class="buttons">
+            <h2 id="value"></h2>
+            <span id="clear">Clear</span>
+            <span>/</span>
+            <span>*</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>-</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span id="plus">+</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>0</span>
+            <span>00</span>
+            <span>.</span>
+            <span id="equal">=</span>
+        </div>
+    </div>
+    <a href="./home.html">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        VOLTAR
+    </a>
+    <script>
+        let buttons = document.querySelector('.buttons');
+        let btn = document.querySelectorAll('span');
+        let value = document.getElementById('value');
+        let toggleBtn = document.querySelector('.toggleBtn');
+        let body = document.querySelector('body');
+
+        for(let i=0; i<btn.length;i++){
+            btn[i].addEventListener("click", function(){
+                
+                if(this.innerHTML=="="){
+                    value.innerHTML = eval(value.innerHTML);
+                }else{
+                    if(this.innerHTML=="Clear"){
+                        value.innerHTML = "";
+                    }
+                    else{
+                        value.innerHTML += this.innerHTML;
+                    }
+                }
+
+            })
+
+        }
+
+        toggleBtn.onclick = function(){
+            body.classList.toggle('dark');
+        }
+    </script>
+</body>
+</html>

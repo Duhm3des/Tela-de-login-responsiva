@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: black ;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 100px;
+    z-index: 100;
+}
+
+header .logo img {
+    max-width: 150px;
+}
+
+.navigation {
+    display: flex;
+}
+
+.navigation li {
+    list-style: none;
+    margin: 0 10px;
+}
+
+.navigation li a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.navigation li:hover a{
+    color: red;
+}
+
+.search {
+    position: relative;
+    width: 300px;
+    height: 40px;
+}
+
+.search input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    outline: none;
+    border-radius: 4px;
+    padding: 0 10px 0 45px;
+    backdrop-filter: blur(10px);
+}
+
+.search input::placeholder {
+    color: #fff;
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    padding-right: 50px;
+    color: #fff;
+    border-radius: 1px solid #fff;
+}
+
+.banner{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.banner .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    max-width: 550px;
+}
+
+
+.movieTitle {
+    max-width: 250px; 
+}
+
+.banner .content h4{
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
+
+.banner .content h4 span {
+    padding: 0 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.banner .content h4 span:first-child{
+    padding-left: 0;
+}
+
+.banner .content h4 span:last-child {
+    border-radius: none;
+}
+
+.banner .content h4 span i {
+    background: green;
+    color: #fff;
+    padding: 0 8px;
+    display: inline-block;
+    font-style: normal;
+    border-radius: 2px;
+}
+
+.banner .content p {
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5em;
+    color: #fff;
+    margin: 10px 0 20px ;
+}
+
+.banner .content .button {
+    position: relative;
+}
+
+.banner .content .button a {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    background: red;
+    color: #fff;
+    padding: 6px 20px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.banner .content .button a:nth-child(2) {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.banner .content .button a:hover:nth-child(2) {
+    background: red;
+}
+
+.play {
+    position: absolute;
+    bottom: 50px;
+    left: 100px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.play img{
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 50px;
+}
+
+.trailer{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.trailer.active{
+    visibility: visible;
+    opacity: 1;
+}
+
+.trailer .close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    filter: invert(1);
+    max-width: 32px;
+}
+
+@media (max-width: 991px) {
+    header {
+        padding: 20px 50px;
+        flex-direction: column;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 10px 0;
+    }
+
+    .banner {
+        padding: 100px 50px;
+    }
+    .banner .bg{
+        height: 100%;
+        width: 100%;
+    }
+
+    .banner .play {
+        left: 50px;
+        font-size: 1em;
+    }
+
+    .play img {
+        margin-right: 10px;
+        max-width: 40px;
+    }
+
+    .trailer video{
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 20px;
+    }
+
+    .search {
+        position: relative;
+        width: calc(100% - 20px);
+        height: 40px;
+    }
+
+    .banner {
+        padding: 220px 20px 100px;
+        width: 100vw;
+        height: 100vh;
+    }
+    .banner .bg{
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .banner .play{
+        left: 20px;
+        font-size: 1em;
+        bottom: 30px;
+    }
+    .Btn-Neon {
+    position: absolute;
+    display: flex;
+    top: 725px;
+    left: 312px;
+    padding: 15px 30px;
+    color: #f32121;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+}
+
+.Btn-Neon {
+    position: absolute;
+    display: flex;
+    top: 768px;
+    left: 203px;
+    padding: 15px 30px;
+    color: #f32121;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.Btn-Neon:hover {
+    color: #255784;
+    background-color: #2196f3;
+    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    transition-delay: 1s;
+}
+
+.Btn-Neon span {
+    position: absolute;
+    display: block;
+}
+
+.Btn-Neon span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #2196f3);
+}
+
+.Btn-Neon:hover span:nth-child(1) {
+    left: 100%;
+    transition: 1s;
+}
+
+.Btn-Neon span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(240deg, transparent, #2196f3);
+}
+
+.Btn-Neon:hover span:nth-child(3) {
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+
+.Btn-Neon span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #2196f3);
+}
+
+.Btn-Neon:hover span:nth-child(2) {
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0.25s;
+}
+
+.Btn-Neon span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #2196f3);
+}
+
+.Btn-Neon:hover span:nth-child(4) {
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0.75s;
+}
+</style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"><img src="images/logo.png"></a>
+        <ul class="navigation">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">TV show</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">Lastest</a></li>
+            <li><a href="#">My List</a></li>
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="Search">
+            <ion-icon class="fa-search" name="search-outline"></ion-icon>  
+        </div>
+    </header>
+
+    <div class="banner">
+        <img src="images/bg.jpg" class="bg">
+
+        <div class="content">
+            <img src="images/name.png" class="movieTitle">
+            <h4>
+                <span>2022</span>
+                <span><i>Livre</i></span>
+                <span><ion-icon name="infinite-outline"></ion-icon></span>
+                <span>Action</span>
+            </h4>
+            <p>
+                A jornada de um programador de 17anos, Eduardo Mendes começa a se interesar pela programação e vai atras de descobrir diversas linguagens de programação pois seu sonho e se tornar um programador de sucesso e seu nome ser reconhecido em toda internet!!
+            </p>
+
+            <div class="button">
+                <a href="#" onclick="toggleVideo()"><ion-icon class="fa fa-play" name="play-outline" onclick="toggleVideo()"></ion-icon>Play</a>
+                <a href="#"><ion-icon class="fa fa-plus" name="add-outline"></ion-icon>My list</a>
+            </div>
+        </div>
+        <a class="play" onclick="toggleVideo()"><img src="images/play.png">Trailer</a>
+    </div>
+
+    <div class="trailer">
+        <video src="images/video.mp4" controls="true"></video>
+        <img src="images/close.png" class="close" onclick="toggleVideo()">
+    </div>
+
+    <a class="Btn-Neon" href="home.html">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        VOLTAR
+    </a>
+	<script>
+		function toggleVideo() {
+    const trailer = document.querySelector('.trailer');
+    const video = document.querySelector('video');
+    trailer.classList.toggle('active');
+
+    video.currentTime = 0;
+    video.pause();
+}
+	</script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
